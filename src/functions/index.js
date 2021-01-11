@@ -1,12 +1,22 @@
 const fs = require('fs');
 const path = require('path');
 
-function readDirectory(filePath) {
-  let files = fs.readdirSync(filePath);
+function readDirectoryFilesPath(mainPath) {
+  return new Promise((resolve, reject) => {
+    try {
+      const filesPath = fs.readdirSync(mainPath);
 
-  return files.map(file => path.join(filePath, file));
+      const joinedPaths = filesPath.map(
+        filePath => path.join(mainPath, filePath)
+      );
+
+      resolve(joinedPaths);
+    } catch (err) {
+      reject(err);
+    }
+  });
 }
 
 module.exports = {
-  readDirectory,
+  readDirectoryFilesPath,
 }
