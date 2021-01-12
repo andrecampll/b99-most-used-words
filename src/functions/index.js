@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-function readDirectoryFilesPath(mainPath) {
+function readDirectoryFiles(mainPath) {
   return new Promise((resolve, reject) => {
     try {
       const filesPath = fs.readdirSync(mainPath);
@@ -17,6 +17,11 @@ function readDirectoryFilesPath(mainPath) {
   });
 }
 
+function elementsEndingWith(array, pattern) {
+  return array.filter((element) => element.endsWith(pattern))
+}
+
 module.exports = {
-  readDirectoryFilesPath,
+  readDirectoryFiles,
+  elementsEndingWith,
 }
