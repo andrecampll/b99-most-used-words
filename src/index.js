@@ -1,5 +1,7 @@
 const fn = require('./functions');
 const path = require('path');
+const symbols = require('./constants');
+
 
 const mainPath = path.join(__dirname, '..', 'assets', 'legendas');
 
@@ -11,4 +13,5 @@ fn.readDirectoryFiles(mainPath)
   .then(fn.removeEmpties)
   .then((lines) => fn.removeIfIncludes('-->')(lines))
   .then(fn.removeIfOnlyNumber)
+  .then((lines) => fn.removeSymbols(symbols)(lines))
   .then(console.log);

@@ -57,6 +57,20 @@ function removeIfOnlyNumber(array) {
   });
 }
 
+function removeSymbols(symbols) {
+  return function(array) {
+    return array.map((element) => {
+      let newText = element;
+
+      symbols.forEach((symbol) => {
+        newText = newText.split(symbol).join('');
+      });
+
+      return newText;
+    });
+  }
+}
+
 module.exports = {
   readDirectoryFiles,
   elementsEndingWith,
@@ -65,4 +79,5 @@ module.exports = {
   removeEmpties,
   removeIfIncludes,
   removeIfOnlyNumber,
+  removeSymbols,
 }
