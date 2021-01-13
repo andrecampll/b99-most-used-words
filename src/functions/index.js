@@ -17,8 +17,10 @@ function readDirectoryFiles(mainPath) {
   });
 }
 
-function elementsEndingWith(array, textualPattern) {
-  return array.filter((element) => element.endsWith(textualPattern))
+function elementsEndingWith(textualPattern ) {
+  return function(array) {
+    return array.filter((element) => element.endsWith(textualPattern))
+  }
 }
 
 function readFile(path) {
@@ -41,8 +43,18 @@ function removeEmpties(array) {
   return array.filter((element) => element.trim())
 }
 
-function removeIfIncludes(array, textualPattern) {
-  return array.filter((element) => !element.includes(textualPattern))
+function removeIfIncludes(textualPattern) {
+  return function (array) {
+    return array.filter((element) => !element.includes(textualPattern))
+  }
+}
+
+function removeIfOnlyNumber(array) {
+  return array.filter((element) => {
+    const number = parseInt(element.trim());
+
+    return number !== number;
+  });
 }
 
 module.exports = {
@@ -52,4 +64,5 @@ module.exports = {
   readFiles,
   removeEmpties,
   removeIfIncludes,
+  removeIfOnlyNumber,
 }
