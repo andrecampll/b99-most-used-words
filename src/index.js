@@ -6,4 +6,6 @@ const mainPath = path.join(__dirname, '..', 'assets', 'legendas');
 fn.readDirectoryFiles(mainPath)
   .then((files) => fn.elementsEndingWith(files, 'srt'))
   .then((SRTfiles) => fn.readFiles(SRTfiles))
+  .then((contents) => contents.join('\n'))
+  .then((allContent) => allContent.split('\n'))
   .then(console.log);
