@@ -17,8 +17,8 @@ function readDirectoryFiles(mainPath) {
   });
 }
 
-function elementsEndingWith(array, pattern) {
-  return array.filter((element) => element.endsWith(pattern))
+function elementsEndingWith(array, textualPattern) {
+  return array.filter((element) => element.endsWith(textualPattern))
 }
 
 function readFile(path) {
@@ -37,9 +37,19 @@ function readFiles(paths) {
   return Promise.all(paths.map((path) => readFile(path)))
 }
 
+function removeEmpties(array) {
+  return array.filter((element) => element.trim())
+}
+
+function removeIfIncludes(array, textualPattern) {
+  return array.filter((element) => !element.includes(textualPattern))
+}
+
 module.exports = {
   readDirectoryFiles,
   elementsEndingWith,
   readFile,
   readFiles,
+  removeEmpties,
+  removeIfIncludes,
 }
