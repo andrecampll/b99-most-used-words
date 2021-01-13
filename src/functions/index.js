@@ -57,6 +57,28 @@ function removeIfOnlyNumber(array) {
   });
 }
 
+function removeSymbols(symbols) {
+  return function(array) {
+    return array.map((element) => {
+      let newText = element;
+
+      symbols.forEach((symbol) => {
+        newText = newText.split(symbol).join('');
+      });
+
+      return newText;
+    });
+  }
+}
+
+const mergeElements = (contents) => contents.join(' ');
+
+function separeteTextBy (symbol) {
+  return function (text) {
+    return text.split(symbol);
+  }
+}
+
 module.exports = {
   readDirectoryFiles,
   elementsEndingWith,
@@ -65,4 +87,7 @@ module.exports = {
   removeEmpties,
   removeIfIncludes,
   removeIfOnlyNumber,
+  removeSymbols,
+  mergeElements,
+  separeteTextBy,
 }
