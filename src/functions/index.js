@@ -71,6 +71,14 @@ function removeSymbols(symbols) {
   }
 }
 
+const mergeElements = (contents) => contents.join(' ');
+
+function separeteTextBy (symbol) {
+  return function (text) {
+    return text.split(symbol);
+  }
+}
+
 module.exports = {
   readDirectoryFiles,
   elementsEndingWith,
@@ -80,4 +88,6 @@ module.exports = {
   removeIfIncludes,
   removeIfOnlyNumber,
   removeSymbols,
+  mergeElements,
+  separeteTextBy,
 }
