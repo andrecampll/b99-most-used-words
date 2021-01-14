@@ -2,7 +2,6 @@ const fn = require('./functions');
 const path = require('path');
 const symbols = require('./constants');
 
-
 const mainPath = path.join(__dirname, '..', 'assets', 'legendas');
 
 fn.readDirectoryFiles(mainPath)
@@ -19,4 +18,5 @@ fn.readDirectoryFiles(mainPath)
   .then(fn.removeEmpties)
   .then(fn.removeIfOnlyNumber)
   .then(fn.agroupElementsAndCount)
+  .then(fn.orderByNumericAttribute('quantity', 'desc'))
   .then(console.log);
