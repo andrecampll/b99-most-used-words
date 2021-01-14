@@ -79,6 +79,22 @@ function separeteTextBy (symbol) {
   }
 }
 
+function agroupElementsAndCount(words) {
+  return Object.values(words.reduce((group, word) => {
+    const wordLowerCase = word.toLowerCase();
+
+    const quantity = group[wordLowerCase] ?
+      group[wordLowerCase].quantity + 1 : 1;
+
+    group[wordLowerCase] = {
+      element: wordLowerCase,
+      quantity,
+    }
+
+    return group;
+  }, {}));
+}
+
 module.exports = {
   readDirectoryFiles,
   elementsEndingWith,
@@ -90,4 +106,5 @@ module.exports = {
   removeSymbols,
   mergeElements,
   separeteTextBy,
+  agroupElementsAndCount,
 }
