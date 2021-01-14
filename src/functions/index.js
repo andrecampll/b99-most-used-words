@@ -60,13 +60,11 @@ function removeIfOnlyNumber(array) {
 function removeSymbols(symbols) {
   return function(array) {
     return array.map((element) => {
-      let newText = element;
+      return symbols.reduce((acc, symbol) => {
+        return acc.split(symbol).join('');
 
-      symbols.forEach((symbol) => {
-        newText = newText.split(symbol).join('');
-      });
 
-      return newText;
+      }, element);
     });
   }
 }
@@ -95,6 +93,16 @@ function agroupElementsAndCount(words) {
   }, {}));
 }
 
+function orderByNumericAttribute(attr, order = 'asc') {
+  return function(array) {
+    const ascOrder = (object1, object2) => object1[attr] - object2[attr];
+
+    const descOrder = (object1, object2) => object2[attr] - object1[attr];
+
+    return array.sort(order === 'asc' ? ascOrder : descOrder);
+  }
+}
+
 module.exports = {
   readDirectoryFiles,
   elementsEndingWith,
@@ -107,4 +115,5 @@ module.exports = {
   mergeElements,
   separeteTextBy,
   agroupElementsAndCount,
+  orderByNumericAttribute,
 }
